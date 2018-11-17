@@ -150,19 +150,26 @@ export default class VideoPlayer extends Component {
    * Kept as top level state to allow
    * player-hover to trigger controls visibility.
    */
-  toggleVisible = () => {
+  setControlsVisible = () => {
     this.setState({
       ...this.state,
-      controlsAreVisible: !this.state.controlsAreVisible,
-    })
+      controlsAreVisible: true,
+    });
+  }
+  
+  setControlsInvisible = () => {
+    this.setState({
+      ...this.state,
+      controlsAreVisible: false,
+    });
   }
 
   render() {
     return (
       <PlayerContainer
         width={this.props.width}
-        onMouseEnter={this.toggleVisible}
-        onMouseLeave={this.toggleVisible}
+        onMouseEnter={this.setControlsVisible}
+        onMouseLeave={this.setControlsInvisible}
       >
         {this.state.playerIsReady ? "ready" : "nope"}
         <video controls={false} id="rv-video-element" ref={this.videoRootRef} style={{ width: this.props.width }}>
@@ -173,7 +180,10 @@ export default class VideoPlayer extends Component {
           playing={this.state.playing}
           currentTime={this.state.currentTime}
           duration={this.state.duration}
-          controlsAreVisible={this.state.controlsAreVisible}
+          controlsAreVisible={
+            !this.state.playing ||
+            this.state.controlsAreVisible
+          }
         />
       </PlayerContainer>
     )

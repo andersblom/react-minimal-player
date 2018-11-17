@@ -17,9 +17,10 @@ export const ControlsContainer = styled.div`
 
     
     transform: translateY(100%);
-    transition: 200ms ease-in;
+    transition: 200ms ease-in 500ms;
     ${props => props.visible && css`
       transform: translateY(0);
+      transition: 200ms ease-in;
     `}
   }
   

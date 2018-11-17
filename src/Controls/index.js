@@ -14,7 +14,7 @@ export default class Controls extends React.Component {
    * Display video total duration, formatted to rounded seconds
    */
   displayDuration = () => {
-    return Math.round(this.props.duration);
+    return Math.floor(this.props.duration);
   }
 
   render() {
