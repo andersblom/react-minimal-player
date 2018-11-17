@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import PlayPauseButton from './PlayPauseButton';
 import { ControlsContainer } from './styles';
 
 export default class Controls extends React.Component {
@@ -23,9 +24,10 @@ export default class Controls extends React.Component {
         visible={this.props.controlsAreVisible}
       >
         <div className="inner">
-          <button onClick={this.props.playPause}>
-            {this.props.playing ? 'pause' : 'play'}
-          </button>
+          <PlayPauseButton
+            playing={this.props.playing}
+            clickCallback={this.props.playPause}
+          />
           <span className="time">
             {this.displayCurrentTime()}/{this.displayDuration()}
           </span>
