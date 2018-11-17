@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "styled-components": "^4.1.1"
   },
   "devDependencies": {
     "@storybook/react": "^4.0.4",
