@@ -5,4 +5,4 @@ import { storiesOf } from '@storybook/react';
 import VideoPlayer from './VideoPlayer';
 
 storiesOf('VideoPlayer', module)
-  .add('Default', () => <VideoPlayer />);
+  .add('Default', () => <VideoPlayer width="500px" />);
