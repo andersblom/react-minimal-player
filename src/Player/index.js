@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Controls from '../Controls';
 
+import { PlayerContainer } from './styles';
+
 export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ export default class VideoPlayer extends Component {
     currentTime: 0,
     playerIsReady: false,
     duration: 0,
+    controlsAreVisible: false,
   }
 
   componentDidMount = () => {
@@ -38,7 +41,7 @@ export default class VideoPlayer extends Component {
       const currentDuration = el.duration;
       console.dir(el);
       if (!isNaN(currentDuration)) {
-        this.showBuffer();
+        // this.showBuffer();
 
         // Set duration in state to be displayed in UI
         this.setDuration(currentDuration);
@@ -142,9 +145,25 @@ export default class VideoPlayer extends Component {
     });
   }
 
+  /**
+   * Toggle controls visibility.
+   * Kept as top level state to allow
+   * player-hover to trigger controls visibility.
+   */
+  toggleVisible = () => {
+    this.setState({
+      ...this.state,
+      controlsAreVisible: !this.state.controlsAreVisible,
+    })
+  }
+
   render() {
     return (
-      <div style={{ width: this.props.width }}>
+      <PlayerContainer
+        width={this.props.width}
+        onMouseEnter={this.toggleVisible}
+        onMouseLeave={this.toggleVisible}
+      >
         {this.state.playerIsReady ? "ready" : "nope"}
         <video controls={false} id="rv-video-element" ref={this.videoRootRef} style={{ width: this.props.width }}>
           <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4" />
@@ -154,8 +173,9 @@ export default class VideoPlayer extends Component {
           playing={this.state.playing}
           currentTime={this.state.currentTime}
           duration={this.state.duration}
+          controlsAreVisible={this.state.controlsAreVisible}
         />
-      </div>
+      </PlayerContainer>
     )
   }
 }

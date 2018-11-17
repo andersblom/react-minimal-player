@@ -19,12 +19,16 @@ export default class Controls extends React.Component {
 
   render() {
     return (
-      <ControlsContainer>
+      <ControlsContainer
+        visible={this.props.controlsAreVisible}
+      >
         <div className="inner">
           <button onClick={this.props.playPause}>
             {this.props.playing ? 'pause' : 'play'}
           </button>
-          {this.displayCurrentTime()}/{this.displayDuration()}
+          <span className="time">
+            {this.displayCurrentTime()}/{this.displayDuration()}
+          </span>
         </div>
       </ControlsContainer>
     )
