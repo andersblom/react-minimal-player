@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// TODO: Use el.currentTime
-
 export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
